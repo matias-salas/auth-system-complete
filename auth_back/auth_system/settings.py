@@ -107,7 +107,7 @@ DATABASES = {
         'NAME': env("DB_DATABASE"),
         'USER': env("DB_USER"),
         'PASSWORD': env("DB_PASSWORD"),
-        'HOST': 'mariadb_dchs_new',
+        'HOST': '127.0.0.1',
         'PORT': env("DB_PORT"),
     }
 }

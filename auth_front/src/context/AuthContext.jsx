@@ -37,6 +37,29 @@ const AuthProvider = ({ children }) => {
         }
     }
 
+    let registerUser = async (e) => {
+        e.preventDefault()
+        console.log(e.target.email.value)
+        console.log(e.target.password.value)
+        console.log(e.target.re_password.value)
+
+        let response = await fetch('http://localhost:8000/auth/users/', {
+            method: 'POST', 
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({'email' : e.target.email.value, 'password': e.target.password.value, 're_password' : e.target.re_password.value })
+        })
+        let data = await response.json() // espera a que la promesa se resuelva y obtén el JSON
+        console.log(data)
+        
+        if (response.status === 201) {
+            
+        }else{
+            alert("Error")
+        }
+    }
+
     let logoutUser = () => {
         setAuthTokens(null)
         setUser(null)
@@ -73,7 +96,8 @@ const AuthProvider = ({ children }) => {
         user: user,
         authTokens: authTokens,
         loginUser: loginUser,
-        logoutUser: logoutUser
+        logoutUser: logoutUser,
+        registerUser: registerUser
     }
 
     useEffect(() => {
